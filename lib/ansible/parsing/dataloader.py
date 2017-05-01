@@ -105,6 +105,10 @@ class DataLoader():
                 print('-----------------------------------')
                 self._handle_error(yaml_exc, file_name, show_content)
 
+            print('108')
+            print(new_data)
+            print('-----------------------------------')
+
             if isinstance(data, AnsibleUnicode):
                 new_data = AnsibleUnicode(new_data)
                 new_data.ansible_pos = data.ansible_pos
