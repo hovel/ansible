@@ -177,6 +177,7 @@ class RoleDefinition(Base, Become, Conditional, Taggable):
             path = templar.template(path)
             role_path = unfrackpath(os.path.join(path, role_name))
             print(role_path)
+            print(self._loader.__class__.__name__)
             if self._loader.path_exists(role_path):
                 return (role_name, role_path)
 
