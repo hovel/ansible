@@ -100,6 +100,9 @@ class DataLoader():
             try:
                 new_data = self._safe_load(in_data, file_name=file_name)
             except YAMLError as yaml_exc:
+                print('103')
+                print(yaml_exc)
+                print('-----------------------------------')
                 self._handle_error(yaml_exc, file_name, show_content)
 
             if isinstance(data, AnsibleUnicode):
