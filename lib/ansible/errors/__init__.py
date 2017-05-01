@@ -45,6 +45,8 @@ class AnsibleError(Exception):
     '''
 
     def __init__(self, message="", obj=None, show_content=True, suppress_extended_error=False):
+        print(self.__class__.__name__)
+        print(obj)
         # we import this here to prevent an import loop problem,
         # since the objects code also imports ansible.errors
         from ansible.parsing.yaml.objects import AnsibleBaseYAMLObject
