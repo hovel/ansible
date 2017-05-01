@@ -84,6 +84,7 @@ class DataLoader():
             # we first try to load this data as JSON
             new_data = json.loads(data)
         except Exception as e:
+            print('87')
             print(e)
             # must not be JSON, let the rest try
             if isinstance(data, AnsibleUnicode):
@@ -183,6 +184,7 @@ class DataLoader():
             return (data, show_content)
 
         except (IOError, OSError) as e:
+            print('187')
             print(e)
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (file_name, str(e)))
 
@@ -414,6 +416,7 @@ class DataLoader():
             return real_path
 
         except (IOError, OSError) as e:
+            print(419)
             print(e)
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (to_native(real_path), to_native(e)))
 
@@ -432,5 +435,6 @@ class DataLoader():
             try:
                 self.cleanup_tmp_file(f)
             except Exception as e:
+                print(438)
                 print(e)
                 pass  # TODO: this should at least warn
