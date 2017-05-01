@@ -198,6 +198,9 @@ class DataLoader():
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (file_name, str(e)))
 
     def _handle_error(self, yaml_exc, file_name, show_content):
+        print('201')
+        print(yaml_exc)
+        print('-------------------')
         '''
         Optionally constructs an object (AnsibleBaseYAMLObject) to encapsulate the
         file name/position where a YAML exception occurred, and raises an AnsibleParserError
