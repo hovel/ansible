@@ -83,7 +83,8 @@ class DataLoader():
         try:
             # we first try to load this data as JSON
             new_data = json.loads(data)
-        except:
+        except Exception as e:
+            print(e)
             # must not be JSON, let the rest try
             if isinstance(data, AnsibleUnicode):
                 # The PyYAML's libyaml bindings use PyUnicode_CheckExact so
@@ -182,6 +183,7 @@ class DataLoader():
             return (data, show_content)
 
         except (IOError, OSError) as e:
+            print(e)
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (file_name, str(e)))
 
     def _handle_error(self, yaml_exc, file_name, show_content):
@@ -412,6 +414,7 @@ class DataLoader():
             return real_path
 
         except (IOError, OSError) as e:
+            print(e)
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (to_native(real_path), to_native(e)))
 
     def cleanup_tmp_file(self, file_path):
@@ -428,5 +431,6 @@ class DataLoader():
         for f in self._tempfiles:
             try:
                 self.cleanup_tmp_file(f)
-            except:
+            except Exception as e:
+                print(e)
                 pass  # TODO: this should at least warn
