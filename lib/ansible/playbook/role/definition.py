@@ -179,12 +179,14 @@ class RoleDefinition(Base, Become, Conditional, Taggable):
             print(role_path)
             print(self._loader.__class__.__name__)
             if self._loader.path_exists(role_path):
+                print('return 182')
                 return (role_name, role_path)
 
         # if not found elsewhere try to extract path from name
         role_path = unfrackpath(role_name)
         if self._loader.path_exists(role_path):
             role_name = os.path.basename(role_name)
+            print('return 189')
             return (role_name, role_path)
 
         raise AnsibleError("the role '%s' was not found in %s" % (role_name, ":".join(role_search_paths)), obj=self._ds)

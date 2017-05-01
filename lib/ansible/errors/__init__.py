@@ -55,6 +55,7 @@ class AnsibleError(Exception):
         self._show_content = show_content
         if obj and isinstance(obj, AnsibleBaseYAMLObject):
             extended_error = self._get_extended_error()
+            print(extended_error)
             if extended_error and not suppress_extended_error:
                 self.message = '%s\n\n%s' % (to_native(message), to_native(extended_error))
             else:
