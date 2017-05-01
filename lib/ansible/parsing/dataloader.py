@@ -218,6 +218,7 @@ class DataLoader():
         print('given path {}'.format(given))
         given = unquote(given)
         given = to_text(given, errors='surrogate_or_strict')
+        print('given as test {}'.format(given))
 
         if given.startswith(u"/"):
             return os.path.abspath(given)

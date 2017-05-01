@@ -182,7 +182,7 @@ class RoleDefinition(Base, Become, Conditional, Taggable):
 
         # if not found elsewhere try to extract path from name
         role_path = unfrackpath(role_name)
-        print('179 {}'.format(role_path))
+        print('185 {}'.format(role_path))
         if self._loader.path_exists(role_path):
             role_name = os.path.basename(role_name)
             return (role_name, role_path)
