@@ -83,11 +83,7 @@ class DataLoader():
         try:
             # we first try to load this data as JSON
             new_data = json.loads(data)
-        except Exception as e:
-            print('87')
-            print(e)
-            print(data)
-            print('-----------------------------------')
+        except:
             # must not be JSON, let the rest try
             if isinstance(data, AnsibleUnicode):
                 # The PyYAML's libyaml bindings use PyUnicode_CheckExact so
@@ -100,14 +96,7 @@ class DataLoader():
             try:
                 new_data = self._safe_load(in_data, file_name=file_name)
             except YAMLError as yaml_exc:
-                print('103')
-                print(yaml_exc)
-                print('-----------------------------------')
                 self._handle_error(yaml_exc, file_name, show_content)
-
-            print('108')
-            print(new_data)
-            print('-----------------------------------')
 
             if isinstance(data, AnsibleUnicode):
                 new_data = AnsibleUnicode(new_data)
@@ -193,14 +182,9 @@ class DataLoader():
             return (data, show_content)
 
         except (IOError, OSError) as e:
-            print('187')
-            print(e)
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (file_name, str(e)))
 
     def _handle_error(self, yaml_exc, file_name, show_content):
-        print('201')
-        print(yaml_exc)
-        print('-------------------')
         '''
         Optionally constructs an object (AnsibleBaseYAMLObject) to encapsulate the
         file name/position where a YAML exception occurred, and raises an AnsibleParserError
@@ -231,6 +215,7 @@ class DataLoader():
         make relative paths work like folks expect.
         '''
 
+        print('given path {}'.format(given))
         given = unquote(given)
         given = to_text(given, errors='surrogate_or_strict')
 
@@ -428,8 +413,6 @@ class DataLoader():
             return real_path
 
         except (IOError, OSError) as e:
-            print(419)
-            print(e)
             raise AnsibleParserError("an error occurred while trying to read the file '%s': %s" % (to_native(real_path), to_native(e)))
 
     def cleanup_tmp_file(self, file_path):
@@ -446,7 +429,5 @@ class DataLoader():
         for f in self._tempfiles:
             try:
                 self.cleanup_tmp_file(f)
-            except Exception as e:
-                print(438)
-                print(e)
+            except:
                 pass  # TODO: this should at least warn
