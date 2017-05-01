@@ -79,6 +79,8 @@ class DataLoader():
         Creates a python datastructure from the given data, which can be either
         a JSON or YAML string.
         '''
+        print('82')
+        print(data)
         new_data = None
         try:
             # we first try to load this data as JSON
