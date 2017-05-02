@@ -128,6 +128,7 @@ class DataLoader():
 
     def path_exists(self, path):
         path = self.path_dwim(path)
+        print('path {} exists {}'.format(path, os.path.exists(to_bytes(path, errors='surrogate_or_strict'))))
         return os.path.exists(to_bytes(path, errors='surrogate_or_strict'))
 
     def is_file(self, path):
